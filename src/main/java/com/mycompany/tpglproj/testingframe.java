@@ -25,7 +25,7 @@ import javax.swing.table.TableColumnModel;
  */
 public class testingframe extends javax.swing.JFrame {
   public String queryG="SELECT * FROM products;";
-  public String queryGS="SELECT * FROM stock;";
+  public String queryGS="SELECT * FROM GROS;";
   public String queryGC="SELECT * FROM commande;";
   public String queryJC="SELECT * FROM journal_commande;";
     /**
@@ -66,7 +66,7 @@ public class testingframe extends javax.swing.JFrame {
          journaltable.getTableHeader().setBackground(Color.WHITE); //Does its job
         journaltable.getTableHeader().setBackground(scrollPane.getBackground());
         journaltable.getTableHeader().setOpaque(true); 
-            journaltable.setRowHeight(35);        
+            journaltable.setRowHeight(55);        
         journaltable.getTableHeader().setForeground(new Color(0,0,0));
                   
                       
@@ -124,8 +124,8 @@ public class testingframe extends javax.swing.JFrame {
         journaltable = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         print = new javax.swing.JButton();
-        seachcomm1 = new javax.swing.JTextField();
-        commandesearch1 = new javax.swing.JButton();
+        inputjournal = new javax.swing.JTextField();
+        searchjournal = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         products = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -449,10 +449,7 @@ public class testingframe extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -562,11 +559,12 @@ public class testingframe extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ConfirmC, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reject, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consult, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ConfirmC, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(reject, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(consult, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -630,12 +628,10 @@ public class testingframe extends javax.swing.JFrame {
 
         jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        journaltable.setBackground(new java.awt.Color(255, 255, 255));
         journaltable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -663,40 +659,39 @@ public class testingframe extends javax.swing.JFrame {
                 printActionPerformed(evt);
             }
         });
-        jPanel4.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 142, 47));
+        jPanel4.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 142, 47));
 
-        seachcomm1.setBackground(new java.awt.Color(255, 255, 255));
-        seachcomm1.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
-        seachcomm1.setText("Search by commande's number");
-        seachcomm1.addFocusListener(new java.awt.event.FocusAdapter() {
+        inputjournal.setBackground(new java.awt.Color(255, 255, 255));
+        inputjournal.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
+        inputjournal.setText("Search by commande's number");
+        inputjournal.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                seachcomm1FocusGained(evt);
+                inputjournalFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                seachcomm1FocusLost(evt);
+                inputjournalFocusLost(evt);
             }
         });
-        seachcomm1.addActionListener(new java.awt.event.ActionListener() {
+        inputjournal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seachcomm1ActionPerformed(evt);
+                inputjournalActionPerformed(evt);
             }
         });
-        jPanel4.add(seachcomm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 40));
+        jPanel4.add(inputjournal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 40));
 
-        commandesearch1.setBackground(new java.awt.Color(86, 11, 173));
-        commandesearch1.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        commandesearch1.setForeground(new java.awt.Color(255, 255, 255));
-        commandesearch1.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\gl images\\search (2).png")); // NOI18N
-        commandesearch1.setText("     Search");
-        commandesearch1.addActionListener(new java.awt.event.ActionListener() {
+        searchjournal.setBackground(new java.awt.Color(86, 11, 173));
+        searchjournal.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        searchjournal.setForeground(new java.awt.Color(255, 255, 255));
+        searchjournal.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\gl images\\search (2).png")); // NOI18N
+        searchjournal.setText("     Search");
+        searchjournal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commandesearch1ActionPerformed(evt);
+                searchjournalActionPerformed(evt);
             }
         });
-        jPanel4.add(commandesearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 161, 41));
+        jPanel4.add(searchjournal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 191, 161, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\thee.png")); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\theimage.png")); // NOI18N
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 330, 380));
 
         javax.swing.GroupLayout journalLayout = new javax.swing.GroupLayout(journal);
@@ -1000,7 +995,7 @@ public class testingframe extends javax.swing.JFrame {
               // TODO add your handling code here:
        DefaultTableModel model = (DefaultTableModel) stocktab.getModel();
          
-        int option= JOptionPane.showConfirmDialog(null, "Are you sure you want to delete Product "+model.getValueAt(stocktab.getSelectedRow(), 0).toString()+" ", "Delete Product", JOptionPane.YES_NO_OPTION);
+        int option= JOptionPane.showConfirmDialog(null, "Are you sure you want to delete STOCK "+model.getValueAt(stocktab.getSelectedRow(), 0).toString()+" ", "Delete Product", JOptionPane.YES_NO_OPTION);
         if(option==0){
        if(stocktab.getSelectedRowCount()==1){
            try {
@@ -1008,7 +1003,7 @@ public class testingframe extends javax.swing.JFrame {
                model.removeRow(stocktab.getSelectedRow());
                Connect conic = new Connect();
                Connection cnx = conic.connect();
-               PreparedStatement st= (PreparedStatement) cnx.prepareStatement("DELETE FROM stock where designation='"+id+"';");
+               PreparedStatement st= (PreparedStatement) cnx.prepareStatement("DELETE FROM GROS where designation='"+id+"';");
                st.executeUpdate();
                System.out.println(id);
                cnx.close();
@@ -1085,7 +1080,7 @@ public class testingframe extends javax.swing.JFrame {
             
             
 
-                query1 = "SELECT * FROM stock WHERE designation='"+searchedItem+"';";
+                query1 = "SELECT * FROM gros WHERE designation='"+searchedItem+"';";
             
 
             Tablestock(query1);
@@ -1115,7 +1110,15 @@ public class testingframe extends javax.swing.JFrame {
     }//GEN-LAST:event_sellsMouseClicked
 
     private void clientbutton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientbutton2MouseClicked
-        // TODO add your handling code here:
+      try {
+          // TODO add your handling code here:
+          new AGENT_commercial().setVisible(true);
+          this.dispose();
+      } catch (SQLException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }//GEN-LAST:event_clientbutton2MouseClicked
 
     private void rejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectActionPerformed
@@ -1147,13 +1150,70 @@ public class testingframe extends javax.swing.JFrame {
     }//GEN-LAST:event_rejectActionPerformed
 
     private void ConfirmCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmCActionPerformed
-        // TODO add your handling code here:
-        //ONCLICK : Jpanel "ADDED TO THE JOURNAL"
-        //GET COMMANDE NUMBER
-        //GET CLIENT'S EMAIL
-        //FILL IN THE JOURNAL WITH :
-        //                              -ITEM1'S TYPE+DESIGNATION+PRICE
-        //SEARCH FOR COMMANDE WITH ITS NUMBER
+      try {
+          // TODO add your handling code here:
+          //ONCLICK : Jpanel "ADDED TO THE JOURNAL"
+          //GET COMMANDE NUMBER
+          //GET CLIENT'S EMAIL
+          //FILL IN THE JOURNAL WITH :
+          //                              -ITEM1'S TYPE+DESIGNATION+PRICE
+          //SEARCH FOR COMMANDE WITH ITS NUMBER
+          
+          String EmailClient="";
+          String Journal="";
+          DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+          int id =(int) model.getValueAt(jTable2.getSelectedRow(), 0); //commande number
+          
+          Connect conic = new Connect();
+          Connection cnx = conic.connect();
+          PreparedStatement st= (PreparedStatement) cnx.prepareStatement("SELECT * FROM commande WHERE numcom="+id+";");
+          ResultSet res= st.executeQuery();
+          while(res.next()){
+             EmailClient=res.getString("EmailClient"); 
+          }
+          System.out.println(id);
+       
+           
+          Connect conic2 = new Connect();
+          Connection cnx1 = conic.connect();
+          PreparedStatement stat= (PreparedStatement) cnx1.prepareStatement("SELECT * FROM items where numcom=?");
+                     stat.setInt(1, id);
+             ResultSet res1 = stat.executeQuery();
+         
+        while(res1.next()){ 
+            //GET ITEMS DATA 
+               System.out.println("okkk");
+            Journal+="item"+res1.getInt("numitem")+"---";
+             Journal+=res1.getString("designation")+"---" ;
+
+            Journal+=res1.getString("type")+"---";
+            Journal+=res1.getFloat("price")+"\n";
+
+
+        }
+          System.out.println(Journal);
+         cnx1.close();
+          //OPEN AND INSERT DATA IN JOURNAL DB
+
+
+            PreparedStatement pstmt = cnx.prepareStatement(
+                "INSERT INTO journal_commande" +
+                " values (?, ?, ?)");
+
+            pstmt.setString(1, EmailClient);
+            pstmt.setInt(2, id);
+            pstmt.setString(3, Journal);
+            
+       model.removeRow(jTable2.getSelectedRow());
+            
+            pstmt.executeUpdate();
+          cnx.close();
+      } catch (SQLException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        
     }//GEN-LAST:event_ConfirmCActionPerformed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
@@ -1267,27 +1327,80 @@ public class testingframe extends javax.swing.JFrame {
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
+          try {
+        
+          Tablejournal(queryJC);
+      } catch (SQLException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (ClassNotFoundException ex) {
+          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_printActionPerformed
 
-    private void seachcomm1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seachcomm1FocusGained
+    private void inputjournalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputjournalFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_seachcomm1FocusGained
+                 inputjournal.setText(null);
+        inputjournal.setForeground(Color.black);
+    }//GEN-LAST:event_inputjournalFocusGained
 
-    private void seachcomm1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_seachcomm1FocusLost
+    private void inputjournalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputjournalFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_seachcomm1FocusLost
+        
+          if(inputjournal.getText()==null){
 
-    private void seachcomm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachcomm1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seachcomm1ActionPerformed
+            inputjournal.setText("Search by commande Number");
+            inputjournal.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_inputjournalFocusLost
 
-    private void commandesearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commandesearch1ActionPerformed
+    private void inputjournalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputjournalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_commandesearch1ActionPerformed
+    }//GEN-LAST:event_inputjournalActionPerformed
+
+    private void searchjournalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchjournalActionPerformed
+        // TODO add your handling code here:
+        
+        
+          try {
+            // TODO add your handling code here:
+
+    
+            
+            Connect conic = new Connect();
+            Connection cnx = conic.connect();
+           
+            String query1="";
+            System.out.println("connected!");
+            
+            
+
+            query1 = "SELECT * FROM journal_commande WHERE numcommande="+searchjournal.getText()+";";
+            
+
+            Tablejournal(query1);
+             java.sql.Statement st= (java.sql.Statement) cnx.createStatement();
+          
+             ResultSet res = st.executeQuery(query1);
+
+            if(res.next()){
+                System.out.println("ok");
+                
+
+            }else{
+                JOptionPane.showMessageDialog(null, "NO journals Found!!");
+            }
+
+            cnx.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_searchjournalActionPerformed
 
     private void productbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productbuttonMouseEntered
         // TODO add your handling code here:
@@ -1328,7 +1441,7 @@ public class testingframe extends javax.swing.JFrame {
             
        
            
-        model.addRow(afficher);
+    
         jTable1.setModel(model);
         cnx.close();
     }
@@ -1357,18 +1470,18 @@ public class testingframe extends javax.swing.JFrame {
             afficher[0]=res.getString("Type") ;
             afficher[1]=res.getString("designation") ;
         
-            afficher[2]=res.getInt("quantityDispo");
+            afficher[2]=res.getInt("Quantity_restante");
         
-            afficher[3]=res.getFloat("priceB");
-            afficher[4]=res.getFloat("priceCC");
-        afficher[5]=res.getFloat("PriceCR");
+            afficher[3]=res.getFloat("prix_achat");
+            afficher[4]=res.getFloat("prix_client");
+        afficher[5]=res.getFloat("prix_vendeur");
         model.addRow(afficher);
         }
             
             
        
            
-        model.addRow(afficher);
+  
         stocktab.setModel(model);
         cnx.close();
     }
@@ -1376,10 +1489,7 @@ public class testingframe extends javax.swing.JFrame {
      
           public void Tablecommande(String query) throws SQLException, ClassNotFoundException {
      
-        // ajouter quantity dachat +priux dachat
-        // set quantitty dispo=quantity dachat
-        // max quantity =quantity dachat-commande clients
-        // 
+       
       
          
          String[] columns = {"commande_number","price","Client's Email"};
@@ -1404,7 +1514,7 @@ public class testingframe extends javax.swing.JFrame {
             
        
            
-        model.addRow(afficher);
+   
         jTable2.setModel(model);
         cnx.close();
     }
@@ -1437,7 +1547,7 @@ public class testingframe extends javax.swing.JFrame {
             
        
            
-        model.addRow(afficher);
+        
         journaltable.setModel(model);
         cnx.close();
     }
@@ -1489,9 +1599,9 @@ public class testingframe extends javax.swing.JFrame {
     private javax.swing.JLabel clientbutton;
     private javax.swing.JLabel clientbutton2;
     private javax.swing.JButton commandesearch;
-    private javax.swing.JButton commandesearch1;
     private javax.swing.JButton consult;
     private javax.swing.JButton deletestock;
+    private javax.swing.JTextField inputjournal;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1532,9 +1642,9 @@ public class testingframe extends javax.swing.JFrame {
     private javax.swing.JPanel products;
     private javax.swing.JButton reject;
     private javax.swing.JTextField seachcomm;
-    private javax.swing.JTextField seachcomm1;
     private javax.swing.JTextField searchInput;
     private javax.swing.JTextField searchInput1;
+    private javax.swing.JButton searchjournal;
     private javax.swing.JLabel sells;
     private javax.swing.JLabel sells1;
     private javax.swing.JTable stocktab;

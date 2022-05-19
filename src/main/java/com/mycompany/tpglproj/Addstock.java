@@ -124,7 +124,7 @@ public class Addstock extends javax.swing.JFrame {
 
         type.setBackground(new java.awt.Color(255, 255, 255));
         type.setForeground(new java.awt.Color(0, 0, 0));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UTH\t", "Simple", "Yaourt", "beurre" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LaitSter", "LaitCru", "LaitPast", "LaitUHT", "CremeFraiche", "beurre", "Yaourt" }));
 
         deletestock.setBackground(new java.awt.Color(154, 3, 30));
         deletestock.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
@@ -246,7 +246,7 @@ public class Addstock extends javax.swing.JFrame {
             Connection cnx = conic.connect();
 
             PreparedStatement pstmt = cnx.prepareStatement(
-                "INSERT INTO stock(type,designation,quantity_dachat,quantity_dispo,priceB)" +
+                "INSERT INTO gros(type,designation,quantity,Quantity_restante,prix_achat)" +
                 " values (?, ?, ?, ?, ?)");
 
             pstmt.setString(1, type.getSelectedItem().toString());

@@ -138,7 +138,7 @@ public class AddProduct extends javax.swing.JFrame {
         type.setBackground(java.awt.Color.white);
         type.setFont(new java.awt.Font("Arial Narrow", 2, 14)); // NOI18N
         type.setForeground(new java.awt.Color(5, 0, 108));
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simple", "UTH", "partiese", "Yaourt", "lben", "Frommage", " " }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lait Sterilise", "Lait pasteurise", "Lait Cru", "Lait UTH", "Creme Fraiche", "Yaourt", "Beure", "Fromage" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -429,7 +429,7 @@ public class AddProduct extends javax.swing.JFrame {
 
     private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
         // TODO add your handling code here:
-        String[] derive = {"Frommage","Yaourt","lben"};
+        String[] derive = {"Fromage","Yaourt","Beure","Creme Fraiche"};
         if( Arrays.asList(derive).contains(type.getSelectedItem().toString())==true){
              jPanel2.setVisible(true);
         }else{

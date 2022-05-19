@@ -5,6 +5,7 @@
 package com.mycompany.tpglproj;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -116,10 +117,7 @@ public class Consultcom extends javax.swing.JFrame {
 
         items.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "NUMITEM", "designation", "type", "quantity", "pricel"
@@ -180,11 +178,6 @@ public class Consultcom extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(49, 49, 49)
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,8 +187,13 @@ public class Consultcom extends javax.swing.JFrame {
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(newProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(126, 126, 126)))
+                                    .addComponent(newProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(54, 54, 54)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 4, Short.MAX_VALUE))
         );
@@ -262,31 +260,41 @@ public class Consultcom extends javax.swing.JFrame {
        Connect conic = new Connect();
         Connection conx = conic.connect();
         java.sql.Statement st= (java.sql.Statement) conx.createStatement();
-     /*   String queryG1 = "SELECT * FROM items where numcom="+numCommande+";";
-           
-             ResultSet res = st.executeQuery(queryG1);
-              System.out.println("yes200");
-             while(res.next()){                  
-                  System.out.println("yes21");         
-                            
 
-//numcom=res.getString("numcom");    
-             }
-             
-          */
              //SET THE TOTAL PRICE FROM THE COMMANDE TABLE
+                   System.out.println(numCommande);
              String queryG = "SELECT * FROM commande where numcom="+numCommande+";";
              ResultSet res1 = st.executeQuery(queryG);     
+             String EmailClient ="";
+            
+              
              while(res1.next()){
+                 
                   comnum.setText(res1.getString(numCommande));
              email.setText(res1.getString("EmailClient"));
               price.setText(res1.getString("price"));   
              }
+         
+             Connect conic2 = new Connect();
+            
+          Connection cnx1 = conic2.connect();
+          PreparedStatement stat= (PreparedStatement) cnx1.prepareStatement("SELECT * FROM user where Email=?");
+                     stat.setString(1,  email.getText());
+             ResultSet res2= stat.executeQuery();
+         
+                        
+            while(res2.next()){
+                  reseller.setText(res2.getString("Role"));
+            
+             }
+           if(reseller.getText().equals("CC")){
+                 reseller.setText("NO");
+            }else{
+                 reseller.setText("YES");
+            }
+            
              
-     ;
              
-             
-         conx.close();    
     }
     public void itemstab() throws SQLException, ClassNotFoundException{
             

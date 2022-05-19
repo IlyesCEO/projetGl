@@ -235,12 +235,12 @@ public class ModifyStock extends javax.swing.JFrame {
                   Connect conic = new Connect();
             Connection cnx = conic.connect();
 
-            PreparedStatement pstmt = cnx.prepareStatement("SELECT quantity_dachat FROM stock where designation='"+designationS+"';");
+            PreparedStatement pstmt = cnx.prepareStatement("SELECT quantity FROM gros where designation='"+designationS+"';");
 
                 int max=10 ;
             ResultSet res= pstmt.executeQuery();
             while(res.next()){
-           max=res.getInt("quantity_dachat");
+           max=res.getInt("quantity");
             
             }
             cnx.close();
@@ -266,12 +266,12 @@ public class ModifyStock extends javax.swing.JFrame {
             Connect conic = new Connect();
             Connection cnx = conic.connect();
 
-            PreparedStatement pstmt = cnx.prepareStatement("update products set quantityDispo=?,designation=?,type=? where designation='"+designationS+"';");
+            PreparedStatement pstmt = cnx.prepareStatement("update gros set designation=?,Quantity_restante=?,Type=? where designation='"+designationS+"';");
 
             
-            
-            pstmt.setString(1,  quantity.getValue().toString());
-pstmt.setString(2, designation.getText());
+            pstmt.setString(1,  designation.getText());
+            pstmt.setString(2,  quantity.getValue().toString());
+
             pstmt.setString(3,  type.getSelectedItem().toString());            
 
             pstmt.executeUpdate();

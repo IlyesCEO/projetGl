@@ -296,14 +296,15 @@
               <Color blue="6c" green="0" red="5" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="Simple"/>
-                <StringItem index="1" value="UTH"/>
-                <StringItem index="2" value="partiese"/>
-                <StringItem index="3" value="Yaourt"/>
-                <StringItem index="4" value="lben"/>
-                <StringItem index="5" value="Frommage"/>
-                <StringItem index="6" value=" "/>
+              <StringArray count="8">
+                <StringItem index="0" value="Lait Sterilise"/>
+                <StringItem index="1" value="Lait pasteurise"/>
+                <StringItem index="2" value="Lait Cru"/>
+                <StringItem index="3" value="Lait UTH"/>
+                <StringItem index="4" value="Creme Fraiche"/>
+                <StringItem index="5" value="Yaourt"/>
+                <StringItem index="6" value="Beure"/>
+                <StringItem index="7" value="Fromage"/>
               </StringArray>
             </Property>
           </Properties>
