@@ -17,7 +17,7 @@ public class Connect {
     
     public Connection connect() throws SQLException, ClassNotFoundException {
         
-           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projetgl?zeroDateTimeBehavior=CONVERT_TO_NULL","root","");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wehebdb?zeroDateTimeBehavior=CONVERT_TO_NULL","root","Stophacking22_");
         
         return con;
     }
