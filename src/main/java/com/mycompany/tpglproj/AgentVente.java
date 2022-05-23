@@ -10,11 +10,13 @@ import java.sql.*;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
@@ -23,15 +25,15 @@ import javax.swing.table.TableColumnModel;
  *
  * @author pc
  */
-public class testingframe extends javax.swing.JFrame {
+public class AgentVente extends javax.swing.JFrame {
   public String queryG="SELECT * FROM products;";
   public String queryGS="SELECT * FROM GROS;";
-  public String queryGC="SELECT * FROM commande;";
+  public String queryGC="SELECT * FROM commande WHERE numcom not in(SELECT numcommande from journal_commande);";
   public String queryJC="SELECT * FROM journal_commande;";
     /**
      * Creates new form 
      */
-    public testingframe() throws SQLException, ClassNotFoundException {
+    public AgentVente() throws SQLException, ClassNotFoundException {
         initComponents();
          Tableproduct(queryG);
          Tablestock(queryGS);
@@ -89,6 +91,8 @@ public class testingframe extends javax.swing.JFrame {
         sells = new javax.swing.JLabel();
         clientbutton2 = new javax.swing.JLabel();
         sells1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        register = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         STOCK = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -145,7 +149,7 @@ public class testingframe extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Downloads\\milk.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\gl images\\milk.png")); // NOI18N
         jLabel5.setText("MilkyWay");
 
         productbutton.setFont(new java.awt.Font("Arial Narrow", 3, 18)); // NOI18N
@@ -196,28 +200,51 @@ public class testingframe extends javax.swing.JFrame {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+
+        register.setFont(new java.awt.Font("Arial Narrow", 3, 18)); // NOI18N
+        register.setForeground(new java.awt.Color(255, 255, 255));
+        register.setText("Add Clients");
+        register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerMouseEntered(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sells, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sells1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(clientbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(productbutton))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(sells, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sells1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(clientbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(productbutton))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(clientbutton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(clientbutton2)
+                .addGap(16, 16, 16)
+                .addComponent(register)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -225,7 +252,11 @@ public class testingframe extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel5)
-                .addGap(104, 104, 104)
+                .addGap(43, 43, 43)
+                .addComponent(register)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(productbutton)
                 .addGap(32, 32, 32)
                 .addComponent(clientbutton)
@@ -894,9 +925,9 @@ public class testingframe extends javax.swing.JFrame {
             // TODO add your handling code here:
             Tableproduct(queryG);
         } catch (SQLException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel4MouseClicked
 
@@ -959,9 +990,9 @@ public class testingframe extends javax.swing.JFrame {
 
             cnx.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1008,9 +1039,9 @@ public class testingframe extends javax.swing.JFrame {
                System.out.println(id);
                cnx.close();
            } catch (SQLException ex) {
-               Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
            } catch (ClassNotFoundException ex) {
-               Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
            }
        }else{
            JOptionPane.showMessageDialog(null, "no selected row");
@@ -1027,9 +1058,9 @@ public class testingframe extends javax.swing.JFrame {
              System.out.println(id);
             new ModifyStock(id).setVisible(true);
         } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
         
     }//GEN-LAST:event_modifystockActionPerformed
@@ -1039,9 +1070,9 @@ public class testingframe extends javax.swing.JFrame {
           // TODO add your handling code here:
           Tablestock(queryGS);
       } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -1098,9 +1129,9 @@ public class testingframe extends javax.swing.JFrame {
 
             cnx.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1115,9 +1146,9 @@ public class testingframe extends javax.swing.JFrame {
           new AGENT_commercial().setVisible(true);
           this.dispose();
       } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
     }//GEN-LAST:event_clientbutton2MouseClicked
 
@@ -1139,9 +1170,9 @@ public class testingframe extends javax.swing.JFrame {
                System.out.println(id);
                cnx.close();
            } catch (SQLException ex) {
-               Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
            } catch (ClassNotFoundException ex) {
-               Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
            }
        }else{
            JOptionPane.showMessageDialog(null, "no selected row");
@@ -1209,9 +1240,9 @@ public class testingframe extends javax.swing.JFrame {
             pstmt.executeUpdate();
           cnx.close();
       } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
         
     }//GEN-LAST:event_ConfirmCActionPerformed
@@ -1221,10 +1252,10 @@ public class testingframe extends javax.swing.JFrame {
           // TODO add your handling code here:
           Tablecommande(queryGC);
       } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
-      }        // TODO add your handling code here:
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
+      }        // TODO add your handling code here:        // TODO add your handling code here:
         
         
         
@@ -1255,9 +1286,9 @@ public class testingframe extends javax.swing.JFrame {
           new Consultcom(a).setVisible(true);
           
           ;     } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
       
       
@@ -1318,9 +1349,9 @@ public class testingframe extends javax.swing.JFrame {
 
             cnx.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_commandesearchActionPerformed
@@ -1331,14 +1362,23 @@ public class testingframe extends javax.swing.JFrame {
         
           Tablejournal(queryJC);
       } catch (SQLException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       } catch (ClassNotFoundException ex) {
-          Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
       }
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
+        
+        MessageFormat header = new MessageFormat("Journal de commande:");
+        MessageFormat footer = new MessageFormat("Page(0,number,integer)");
+        try{
+            journaltable.print(JTable.PrintMode.NORMAL,header,footer);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
     }//GEN-LAST:event_printActionPerformed
 
     private void inputjournalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputjournalFocusGained
@@ -1378,7 +1418,7 @@ public class testingframe extends javax.swing.JFrame {
             
             
 
-            query1 = "SELECT * FROM journal_commande WHERE numcommande="+searchjournal.getText()+";";
+            query1 = "SELECT * FROM journal_commande WHERE numcommande="+inputjournal.getText()+";";
             
 
             Tablejournal(query1);
@@ -1396,9 +1436,9 @@ public class testingframe extends javax.swing.JFrame {
 
             cnx.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AGENT_Vente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchjournalActionPerformed
 
@@ -1406,6 +1446,15 @@ public class testingframe extends javax.swing.JFrame {
         // TODO add your handling code here:
         productbutton.setBackground(Color.gray);
     }//GEN-LAST:event_productbuttonMouseEntered
+
+    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
+        // TODO add your handling code here:
+        new ClientRegister().setVisible(true);
+    }//GEN-LAST:event_registerMouseClicked
+
+    private void registerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registerMouseEntered
 
     /**
      * @param args the command line arguments
@@ -1568,25 +1617,26 @@ public class testingframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(testingframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(testingframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(testingframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(testingframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgentVente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new testingframe().setVisible(true);
+                    new AgentVente().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(testingframe.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AgentVente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -1631,6 +1681,7 @@ public class testingframe extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -1640,6 +1691,7 @@ public class testingframe extends javax.swing.JFrame {
     private javax.swing.JButton print;
     private javax.swing.JLabel productbutton;
     private javax.swing.JPanel products;
+    private javax.swing.JLabel register;
     private javax.swing.JButton reject;
     private javax.swing.JTextField seachcomm;
     private javax.swing.JTextField searchInput;

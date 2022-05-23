@@ -67,6 +67,7 @@ public class AddProduct extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        deletestock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,8 +149,6 @@ public class AddProduct extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("NEW PRODUCT");
-
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Downloads\\milk.png")); // NOI18N
 
         weight.setBackground(java.awt.Color.white);
         weight.setFont(new java.awt.Font("Arial Narrow", 2, 14)); // NOI18N
@@ -233,6 +232,17 @@ public class AddProduct extends javax.swing.JFrame {
             }
         });
 
+        deletestock.setBackground(new java.awt.Color(154, 3, 30));
+        deletestock.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        deletestock.setForeground(new java.awt.Color(255, 255, 255));
+        deletestock.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Downloads\\minus.png")); // NOI18N
+        deletestock.setText("    CANCEL");
+        deletestock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletestockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -269,6 +279,10 @@ public class AddProduct extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(nutval, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(deletestock)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,7 +350,9 @@ public class AddProduct extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletestock))
                 .addGap(23, 23, 23))
         );
 
@@ -467,6 +483,11 @@ public class AddProduct extends javax.swing.JFrame {
         //reference.setText(null);
     }//GEN-LAST:event_referenceFocusGained
 
+    private void deletestockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletestockActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_deletestockActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -504,6 +525,7 @@ public class AddProduct extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Ingredients;
+    private javax.swing.JButton deletestock;
     private javax.swing.JTextField designation;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;

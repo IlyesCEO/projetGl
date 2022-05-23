@@ -176,7 +176,7 @@ public class ModifyProduct extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("PRODUCT INFO");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Downloads\\milk.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Desktop\\gl images\\milk.png")); // NOI18N
 
         nutval.setBackground(java.awt.Color.white);
         nutval.setFont(new java.awt.Font("Arial Narrow", 2, 14)); // NOI18N
@@ -467,10 +467,10 @@ public class ModifyProduct extends javax.swing.JFrame {
             pstmt.executeUpdate();
 
             System.out.println("product modified");
-            AGENT_Vente ag = new AGENT_Vente();
+            AgentVente ag = new AgentVente();
             //doesn't work
             this.dispose();
-            ag.Table("SELECT * FROM products;");
+            ag.Tableproduct("SELECT * FROM products;");
 
         } catch (SQLException ex) {
             System.out.println(ex);
